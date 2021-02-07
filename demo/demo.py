@@ -16,6 +16,11 @@ from predictor import VisualizationDemo
 # constants
 WINDOW_NAME = "COCO detections"
 
+from detectron2.data import DatasetCatalog, MetadataCatalog
+
+MetadataCatalog.get("beers_train").thing_classes = ["Geladeira", "aguacrystal200ml", "delvallegoiaba290ml","delvallemaracuja290ml","delvalleuva290ml", "leaoguarana300ml","leaoguaranaacai300ml", "monsterenergy473ml", "pratslaranja900ml","toddynho150ml"]
+MetadataCatalog.get("beers_test").thing_classes= ["Geladeira", "aguacrystal200ml", "delvallegoiaba290ml","delvallemaracuja290ml","delvalleuva290ml", "leaoguarana300ml","leaoguaranaacai300ml", "monsterenergy473ml", "pratslaranja900ml","toddynho150ml"]
+
 
 def setup_cfg(args):
     # load config from file and command-line arguments
@@ -138,12 +143,12 @@ if __name__ == "__main__":
                 output_fname = os.path.splitext(output_fname)[0] + ".mkv"
             else:
                 output_fname = args.output
-            assert not os.path.isfile(output_fname), output_fname
+            # assert not os.path.isfile(output_fname), output_fname
             output_file = cv2.VideoWriter(
                 filename=output_fname,
                 # some installation of opencv may not support x264 (due to its license),
                 # you can try other format (e.g. MPEG)
-                fourcc=cv2.VideoWriter_fourcc(*"x264"),
+                fourcc=cv2.VideoWriter_fourcc(*"MPEG"),
                 fps=float(frames_per_second),
                 frameSize=(width, height),
                 isColor=True,

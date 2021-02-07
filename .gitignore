@@ -2,8 +2,10 @@
 output
 instant_test_output
 inference_test_output
-
-
+.history
+*.mp4
+notebook/dataset/
+notebook/output/
 *.png
 *.json
 *.diff
